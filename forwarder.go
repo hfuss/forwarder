@@ -3,6 +3,7 @@ package forwarder
 import (
 	"context"
 	"fmt"
+	"io"
 	"net/http"
 	"net/url"
 	"os"
@@ -85,7 +86,7 @@ func forwarders(ctx context.Context, options []*Option, config *restclient.Confi
 			ErrOut: os.Stderr,
 		}
 
-		stream.Out = os.DevNull
+		stream.Out = io.Discard
 		if option.StdOutEnabled {
 			stream.Out = os.Stdout
 		}
