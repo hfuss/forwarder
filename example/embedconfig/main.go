@@ -5,7 +5,7 @@ import (
 	_ "embed"
 	"fmt"
 
-	"github.com/anthhub/forwarder"
+	"github.com/hfuss/forwarder"
 )
 
 //go:embed kubeconfig
