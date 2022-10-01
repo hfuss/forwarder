@@ -71,12 +71,6 @@ func forwarders(ctx context.Context, options []*Option, config *restclient.Confi
 		return nil, err
 	}
 
-	stream := genericclioptions.IOStreams{
-		In:     os.Stdin,
-		Out:    os.Stdout,
-		ErrOut: os.Stderr,
-	}
-
 	carries := make([]*carry, len(podOptions))
 
 	var g errgroup.Group
@@ -85,6 +79,16 @@ func forwarders(ctx context.Context, options []*Option, config *restclient.Confi
 		index := index
 		stopCh := make(chan struct{}, 1)
 		readyCh := make(chan struct{})
+
+		stream := genericclioptions.IOStreams{
+			In:     os.Stdin,
+			ErrOut: os.Stderr,
+		}
+
+		stream.Out = os.DevNull
+		if option.StdOutEnabled {
+			stream.Out = os.Stdout
+		}
 
 		req := &portForwardAPodRequest{
 			RestConfig: config,

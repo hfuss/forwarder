@@ -24,18 +24,20 @@ type carry struct {
 }
 
 type PodOption struct {
-	LocalPort int    // the local port for forwarding
-	PodPort   int    // the k8s pod port
-	Pod       v1.Pod // the k8s pod metadata
+	LocalPort     int    // the local port for forwarding
+	PodPort       int    // the k8s pod port
+	Pod           v1.Pod // the k8s pod metadata
+	StdOutEnabled bool
 }
 
 type Option struct {
-	LocalPort   int    // the local port for forwarding
-	RemotePort  int    // the remote port port for forwarding
-	Namespace   string // the k8s namespace metadata
-	PodName     string // the k8s pod metadata
-	ServiceName string // the k8s service metadata
-	Source      string // the k8s source string, eg: svc/my-nginx-svc po/my-nginx-66b6c48dd5-ttdb2
+	LocalPort     int    // the local port for forwarding
+	RemotePort    int    // the remote port port for forwarding
+	Namespace     string // the k8s namespace metadata
+	PodName       string // the k8s pod metadata
+	ServiceName   string // the k8s service metadata
+	Source        string // the k8s source string, eg: svc/my-nginx-svc po/my-nginx-66b6c48dd5-ttdb2
+	StdOutEnabled bool   // whether to output the forward logs to stdout or not
 }
 
 type Result struct {

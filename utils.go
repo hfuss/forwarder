@@ -140,5 +140,6 @@ func buildPodOption(option *Option, pod *v1.Pod) *PodOption {
 				Namespace: pod.Namespace,
 			},
 		},
+		StdOutEnabled: option.StdOutEnabled,
 	}
 }
