@@ -113,7 +113,9 @@ func handleOptions(ctx context.Context, options []*Option, config *restclient.Co
 			}
 			pod := pods.Items[0]
 
-			fmt.Printf("Forwarding service: %v to pod %v ...\n", option.ServiceName, pod.Name)
+			if option.StdOutEnabled {
+				fmt.Printf("Forwarding service: %v to pod %v ...\n", option.ServiceName, pod.Name)
+			}
 
 			podOptions[index] = buildPodOption(option, &pod)
 			return nil
