@@ -11,6 +11,7 @@ import (
 	"path"
 	"sync"
 	"syscall"
+	"time"
 
 	"golang.org/x/sync/errgroup"
 	"k8s.io/cli-runtime/pkg/genericclioptions"
@@ -178,8 +179,10 @@ func portForwardAPod(req *portForwardAPodRequest) (*portforward.PortForwarder, e
 	}
 
 	go func() {
-		if err := fw.ForwardPorts(); err != nil {
-			panic(err)
+		for {
+			if err := fw.ForwardPorts(); err != nil {
+				time.Sleep(30 * time.Second)
+			}
 		}
 	}()
 
