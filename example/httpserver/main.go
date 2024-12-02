@@ -7,7 +7,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/hfuss/forwarder"
+	"github.com/onelapahead/forwarder"
 
 	"github.com/namsral/flag"
 )
